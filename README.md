@@ -1,2 +1,2 @@
-# PythonAnyWhere link app
+# PythonAnyWhere Link App
 http://lucasoliveira.pythonanywhere.com/

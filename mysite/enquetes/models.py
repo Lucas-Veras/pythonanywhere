@@ -12,7 +12,7 @@ class Pergunta(models.Model):
         return self.data_pub >= timezone.now() - datetime.timedelta(days=1)
 
     def __str__(self):
-        return self.pergunta_texto
+        return f"{self.pk} - {self.pergunta_texto}"
 
 class Escolha(models.Model):
     pergunta = models.ForeignKey(
@@ -22,4 +22,4 @@ class Escolha(models.Model):
     votos = models.IntegerField(default=0)
 
     def __str__(self):
-        return "{} - {}".format(self.pergunta.pergunta_texto, self.escolha_texto)
+        return f"{self.pergunta.pergunta_texto} - {self.escolha_texto}"

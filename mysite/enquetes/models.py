@@ -5,7 +5,8 @@ from django.utils import timezone
 # Create your models here.
 class Pergunta(models.Model):
     pergunta_texto = models.CharField(max_length=150)
-    data_pub = models.DateTimeField('Data de publicação')
+    data_pub = models.DateTimeField(
+        'Data de publicação', auto_now_add=True)
 
     def was_published(self):
         return self.data_pub >= timezone.now() - datetime.timedelta(days=1)
@@ -21,4 +22,4 @@ class Escolha(models.Model):
     votos = models.IntegerField(default=0)
 
     def __str__(self):
-        return "{} - {}".format(self.pergunta.pergunta_texto,self.escolha_texto)
+        return "{} - {}".format(self.pergunta.pergunta_texto, self.escolha_texto)

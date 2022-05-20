@@ -17,24 +17,18 @@
 <body>
     <div>
         <h2>Aplicação de enquetes</h2>
-<<<<<<< HEAD
-        {% if ultima_questao_lista %}
-        <ul>
-            {% for pergunta in ultima_questao_lista %}
-            <li><a href="/enquetes/{{ pergunta.id }}"></a></li>
-=======
         {% if questao_lista %}
         <ul>
             {% for Pergunta in questao_lista %}
             <li>
                 <a href="/enquetes/{{ pergunta.id }}">{{ Pergunta.pergunta_texto }}</a>
             </li>
->>>>>>> 5732195cef9e8f6bf0def99b257a146573c8a63e
             {% endfor %}
         </ul>
         {% else %}
         <p>Nenhuma questão disponível.</p>
         {% endif %}
+        <p>teste</p>
     </div>
 </body>
 </html>

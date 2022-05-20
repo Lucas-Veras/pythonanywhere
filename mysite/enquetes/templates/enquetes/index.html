@@ -19,9 +19,9 @@
         <h2>Aplicação de enquetes</h2>
         {% if questao_lista %}
         <ul>
-            {% for Pergunta in questao_lista %}
+            {% for pergunta in questao_lista %}
             <li>
-                <a href="/enquetes/{{ pergunta.id }}">{{ Pergunta.pergunta_texto }}</a>
+                <a href="/enquetes/{{ pergunta.id }}">{{ pergunta.pergunta_texto }}</a>
             </li>
             {% endfor %}
         </ul>

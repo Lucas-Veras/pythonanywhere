@@ -12,11 +12,11 @@ def detalhes(request, id_enquete):
     pergunta = get_object_or_404(Pergunta, pk=id_enquete)
     return render(request, 'enquetes/detalhes.html', {'pergunta' : pergunta})
 
-def resultados(request, questao_id):
+def resultados(request, id_enquete):
     resposta = "Deltahes da enquete #$s."
-    return HttpResponse(resposta % questao_id)
+    return HttpResponse(resposta % id_enquete)
 
-def votacao(request, questao_id):
+def votacao(request, id_enquete):
     resposta = "Votação para a questão %s."
-    return HttpResponse(resposta % questao_id)
+    return HttpResponse(resposta % id_enquete)
 

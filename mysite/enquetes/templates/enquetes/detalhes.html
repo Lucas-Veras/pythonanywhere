@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        main, header{
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header{
+            padding: 40px;
+            text-align: center;
+
+        }
+        ul{
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-items: center;
+            max-width: 600px;
+            gap: 10px 20px;
+            margin: 0 auto;
+        }
+        @media (max-width: 500px) {
+            ul{
+                grid-template-columns: 1fr;
+            }
+        }
+        li{
+            width: 100%;
+            height: 100%;
+            display: grid;
+        }
+        a{
+            padding: 10px 25px 10px 25px;
+            background-color: white;
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: black;
+            transition: 0.5s;
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+        a:hover{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <header>
+            <h1>{{ pergunta.pergunta_texto }}</h1>
+        </header>
+        <main>
+            <ul>
+                {% for escolha in pergunta.escolha_set.all %}
+                <li><a href="">{{ escolha.escolha_texto }}</a></li>
+                {% endfor %}
+            </ul>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,32 +1,22 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse
 from .models import Pergunta
-#from django.template import loader
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 # Create your views here.
 
 def index(request):
     questao_lista = Pergunta.objects.order_by("data_pub")[:5]
- #   template = loader.get_template('enquetes/index.html')
-    contexto = {
-            'questao_lista' : questao_lista,
-        }
-    return render(request, 'enquetes/index.html', contexto)
-  #  return HttpResponse(template.render(contexto, request))
+    return render(request, 'enquetes/index.html', {'questao_lista' : questao_lista,})
 
-def detalhes(request, id_pergunta):
-    try:
-        pergunta = Pergunta.objects.get(pk = id_pergunta)
-    except Pergunta.DoesNotExist:
-        raise Http404("Enquete desejada não existe")
-        contexto = { 'pergunta' : pergunta }
-    return render(request, 'enquetes/detalhes', contexto)
+def detalhes(request, id_enquete):
+    pergunta = get_object_or_404(Pergunta, pk=id_enquete)
+    return render(request, 'enquetes/detalhes.html', {'pergunta' : pergunta})
 
-def resultados(request, id_enquete):
+def resultados(request, questao_id):
     resposta = "Deltahes da enquete #$s."
-    return HttpResponse(resposta % id_enquete)
+    return HttpResponse(resposta % questao_id)
 
-def votacao(request, id_enquete):
+def votacao(request, questao_id):
     resposta = "Votação para a questão %s."
-    return HttpResponse(resposta % id_enquete)
+    return HttpResponse(resposta % questao_id)
 

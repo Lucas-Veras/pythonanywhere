@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes</title>
     <style>
+
         *{
             margin: 0;
             padding: 0;
@@ -20,7 +21,7 @@
             padding: 40px;
             text-align: center;
 
-        }
+        }/*
         ul{
             list-style: none;
             display: grid;
@@ -56,20 +57,38 @@
             background-color: black;
             color: white;
         }
+        .voltar{
+            grid-column: 1/-1;
+            text-align:center;
+        }*/
     </style>
 </head>
 <body>
     <div>
         <header>
             <h1>{{ pergunta.pergunta_texto }}</h1>
+            <p>{{ pergunta.data_pub }}</p>
         </header>
         <main>
+        {% if msg_erro %}
+            <hr>
+            <strong>{{ msg_erro}}</strong>
+            <hr>
+        {% endif %}
+            <u>Escolha a sua alternativa</u>:<br>
+            <form action="{% url 'enquetes:votacao' pergunta.id %}" method="post">
+            {% csrf_token %}
             <ul>
                 {% for escolha in pergunta.escolha_set.all %}
-                <li><a href="">{{ escolha.escolha_texto }}</a></li>
+                <input type="radio" name="alternativa" id='escolha{{ forloop.counter }}' value="{{ escolha.id }}"></input>
+                <label for="escolha{{ forloop.counter }}">{{ escolha.escolha_texto }}</label>
                 {% endfor %}
             </ul>
+            <input type="submit" value="Votar">
+            </form>
+            <a href="/enquetes" class="voltar">Voltar</a>
         </main>
+
     </div>
 </body>
 </html>

@@ -24,18 +24,11 @@
         ul{
             list-style: none;
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 3fr 1fr;
             max-width: 600px;
+            gap: 5px 10px;
             margin: 0 auto;
-        }
-        li{
-            border-bottom: 2px solid black;
-            border-left: 2px solid black;
-            border-right: 2px solid black;
-            border-radius: 4px;
-        }
-        li:first-child{
-            border-top: 2px solid black;
+            padding: 10px;
         }
         a{
             padding: 10px 25px 10px 25px;
@@ -44,10 +37,16 @@
             text-decoration: none;
             color: black;
             transition: 0.5s;
+            border: 2px solid black;
+            border-radius: 5px;
         }
         a:hover{
             background-color: black;
             color: white;
+        }
+        .adm{
+            grid-column: 1/-1;
+            text-align: center;
         }
     </style>
 </head>
@@ -63,7 +62,11 @@
                 <li>
                     <a href="{% url 'enquetes:detalhes' pergunta.id %}">{{ pergunta.pergunta_texto }}</a>
                 </li>
+                <li>
+                    <a href="{% url 'enquetes:resultados' pergunta.id %}">Parcial</a>
+                </li>
                 {% endfor %}
+                <a href="/admin" class="adm">Administração</a>
             </ul>
             {% else %}
             <p>Nenhuma questão disponível.</p>

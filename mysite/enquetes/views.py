@@ -20,14 +20,14 @@ def votacao(request, id_enquete):
     except(KeyError, Escolha.DoesNotExist):
         return render(request, 'enquetes/detalhes.html', {
             'pergunta':pergunta,
-            'error_message':'Você não selecionou uma opção',
+            'msg_erro':'Você não selecionou uma opção',
         })
     else:
         alternativa_escolhida.votos += 1
         alternativa_escolhida.save()
-        return HttpResponseRedirect(reverse('enquetes:resultados',args=(id_enquete,)))
+        return HttpResponseRedirect(reverse('enquetes:resultados', args=(id_enquete,)))
 
 def resultados(request, id_enquete):
     pergunta = get_object_or_404(Pergunta, pk=id_enquete)
-    return render(request, 'enquetes/resultados.html', {'perginta':pergunta})
+    return render(request, 'enquetes/resultados.html', {'pergunta':pergunta})
 

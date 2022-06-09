@@ -5,19 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        main, header{
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header{
+            padding: 40px;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+        ul{
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            max-width: 400px;
+            gap: 8px 10px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        a{
+            padding: 10px 25px 10px 25px;
+            background-color: white;
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            transition: 0.5s;
+            border: 2px solid black;
+            border-radius: 5px;
+
+        }
+        a:hover{
+            background-color: black;
+            color: white;
+        }
+        li:last-child{
+            margin-top: 10px;
+            justify-self: center;
+            grid-column: 1/-1;
+        }
+        @media (max-width: 400px){
+            a{
+                display: block;
+                text-align: center;
+            }
+            a:last-child{
+                margin-top: 10px;
+            }
+            li:last-child{
+               width:100%;
+            }
+            h1{
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ pergunta.pergunta_texto }} #{{ pergunta.id }}</h1>
-    <p>Data de publicação: {{ pergunta.data_pub }}</p>
+    <header>
+        <h1>{{ pergunta.pergunta_texto }} #{{ pergunta.id }}</h1>
+        <p>Data de publicação: {{ pergunta.data_pub }}</p>
+    </header>
+    <main>
     <ul>
         {% for escolha in pergunta.escolha_set.all %}
         <li>
-            {{ escolha.escolha_texto }} -- {{ escolha.votos }}
-            voto{{ escolha.votos|pluralize }}
+            {{ escolha.escolha_texto }}
+        </li>
+        <li>
+            {{ escolha.votos }} voto{{ escolha.votos|pluralize }}
         </li>
         {% endfor %}
+        <li>
+            <a href="{% url 'enquetes:index' %}" class="voltar">Home</a>
+            <a href="{% url 'enquetes:detalhes' pergunta.id %}">Voltar para a votação</a>
+        </li>
     </ul>
-    <a href="{% url 'enquetes:index' %}" class="voltar">Home</a> |
-    <a href="{% url 'enquetes:detalhes' pergunta.id %}">Voltar para a votação</a>
+
+    </main>
 </body>
 </html>

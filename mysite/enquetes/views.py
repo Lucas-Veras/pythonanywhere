@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, render
 # Create your views here.
 
 def index(request):
-    questao_lista = Pergunta.objects.order_by("data_pub")
+    questao_lista = Pergunta.objects.order_by("-data_pub")[:25]
     return render(request, 'enquetes/index.html', {'questao_lista' : questao_lista,})
 
 def detalhes(request, id_enquete):

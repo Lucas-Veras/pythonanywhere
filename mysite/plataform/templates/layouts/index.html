@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    {% block css %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <header class="mb-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid m-3 px-5">
+                <a href="/" class="navbar-brand">Bazar Virtual</a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav">
+                        {% if request.get_full_path == '/' %}
+                        <a href="/" class="nav-item nav-link active">Produtos</a>
+                        {% else %}
+                        <a href="/" class="nav-item nav-link">Produtos</a>
+                        {% endif %}
+                        {% if request.get_full_path == '/eventos/' %}
+                            <a href="{% url 'plataform:eventos' %}" class="nav-item nav-link active">Eventos</a>
+                        {% else %}
+                            <a href="{% url 'plataform:eventos' %}" class="nav-item nav-link">Eventos</a>
+                        {% endif %}
+                        {% if request.get_full_path == '/cadastrarevento/' %}
+                            <a href="{% url 'plataform:cadastroEvento' %}" class="nav-item nav-link active"> Criar Evento</a>
+                        {% else %}
+                            <a href="{% url 'plataform:cadastroEvento' %}" class="nav-item nav-link"> Criar Evento</a>
+                        {% endif %}
+                        {% if request.get_full_path == '/cadastrarproduto/' %}
+                            <a href="{% url 'plataform:cadastroProduto' %}" class="nav-item nav-link active"> Anuncie um produto</a>
+                        {% else %}
+                            <a href="{% url 'plataform:cadastroProduto' %}" class="nav-item nav-link"> Anuncie um produto</a>
+                        {% endif %}
+                    </div>
+                    {% if request.user.usuario is None %}
+                    <div class="navbar-nav ms-auto">
+                        <a href="{% url 'plataform:cadastro' %}" class="nav-item nav-link">Cadastrar-se</a>
+                        <a href="{% url 'plataform:login' %}" class="nav-item nav-link">Login</a>
+                    </div>
+                    {% else %}
+                    <div class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Olá, {{ user.username }}
+                            </a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">Perfil</a></li>
+                              <li><a class="dropdown-item" href="{% url 'plataform:meusEventos' %}">Meus Eventos</a></li>
+                              <li><a class="dropdown-item" href="{% url 'plataform:meusAnuncios' %}">Meus Anúncios</a></li>
+                              <li><a class="dropdown-item" href="{% url 'plataform:minhasReservas' %}">Minhas Reservas</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="{% url 'plataform:logout' %}">Deslogar</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <!--  <footer class="mt-5 container-fluid p-4 bg-dark text-center">
+        <p class="mb-0 text-light fs-3 text">Bazar Virtual © Direitos reservados.</p>
+    </footer>-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block js %}{% endblock %}
+</body>
+
+</html>

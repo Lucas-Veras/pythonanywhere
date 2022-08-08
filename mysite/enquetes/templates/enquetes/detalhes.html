@@ -1,85 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
-        main, header{
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header{
-            padding: 40px;
-            text-align: center;
+    <link rel="stylesheet" href="{% static 'enquetes/detalhes.css' %}">
 
-        }
-        main{
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            justify-items: center;
-            max-width: 600px;
-            gap: 10px 20px;
-            margin: 0 auto;
-        }
-        u{
-            grid-column: 1/-1;
-            margin-bottom: 16px;
-        }
-        ul{
-            list-style: none;
-            margin-bottom: 16px;
-        }
-        form{
-            grid-column: 1/-1;
-            margin-bottom: 16px;
-            padding: 10px;
-        }
-        input[type="submit"]{
-            padding: 10px 25px 10px 25px;
-            width: 100%;
-            border: 2px solid black;
-            border-radius: 5px;
-            background-color: white;
-            transition: 0.5s;
-            grid-column: 1/-1;
-            display: block;
-            margin-bottom: 16px;
-            font-weight: bold;
-        }
-        a{
-            padding: 10px 25px 10px 25px;
-            background-color: white;
-            display: block;
-            width: 100%;
-            text-decoration: none;
-            color: black;
-            transition: 0.5s;
-            border: 2px solid black;
-            border-radius: 5px;
-            grid-column: 1/-1;
-        }
-        a:hover, input[type="submit"]:hover{
-            background-color: black;
-            color: white;
-        }
-        .voltar{
-            grid-column: 1/-1;
-            text-align:center;
-        }
-        strong{
-            color:red;
-            grid-column: 1/-1;
-        }
-    </style>
+    <title>Detalhes</title>
 </head>
 <body>
     <div>
@@ -105,7 +33,7 @@
                 <input type="submit" value="Votar">
                 <a href="/enquetes" class="voltar">Home</a>
             </form>
-            
+
         </main>
 
     </div>

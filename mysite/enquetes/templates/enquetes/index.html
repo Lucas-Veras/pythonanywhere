@@ -1,60 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'enquetes/index.css' %}">
     <title>Enquetes</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
-        main, header{
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        header{
-            padding: 40px;
-            text-align: center;
-
-        }
-        ul{
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            max-width: 600px;
-            gap: 5px 10px;
-            margin: 0 auto;
-            padding: 10px;
-        }
-        @media (max-width: 400px){
-            ul{
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-        a{
-            padding: 10px 25px 10px 25px;
-            background-color: white;
-            display: block;
-            text-decoration: none;
-            color: black;
-            transition: 0.5s;
-            border: 2px solid black;
-            border-radius: 5px;
-        }
-        a:hover{
-            background-color: black;
-            color: white;
-        }
-        .adm{
-            grid-column: 1/-1;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
     <div>

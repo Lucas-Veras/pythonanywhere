@@ -4,7 +4,7 @@ from django.views import View
 from .models import Produto, Usuario, Evento, Reserva
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.urls import reverse 
+from django.urls import reverse
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
@@ -28,7 +28,7 @@ class ProdutosPage(View):
             produtos = Produto.objects.exclude(usuario = request.user.usuario).filter(ehReservado = False)
         else:
             produtos = Produto.objects.exclude(ehReservado = True)
-            
+
         contexto = {'produtos': produtos}
         return render(request, 'index.html', contexto)
 
@@ -38,7 +38,7 @@ class EventoPage(View):
             eventos = Evento.objects.exclude(usuario_id = request.user.usuario.id)
         else:
             eventos = Evento.objects.all()
-        
+
         contexto = {'eventos': eventos}
         return render(request, 'eventos/index.html', contexto)
 
@@ -51,7 +51,7 @@ def EventoProdutos(request, evento_id):
 class CadastroEvento(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'cadastroEvento/index.html')
-    
+
     def post(self, request, *args, **kwargs):
         nomeEvento = request.POST['nomeEvento']
         descricaoEvento = request.POST['descricaoEvento']
@@ -117,7 +117,7 @@ def ReservarProduto(request, produto_id):
     produto.save()
     nova_reserva = Reserva(usuario=request.user.usuario, produto=produto)
     nova_reserva.save()
-    return redirect('plataform:minhasReservas')  
+    return redirect('plataform:minhasReservas')
 
 def deleteAnuncio(request, produto_id):
     produto = Produto.objects.get(id=produto_id)
@@ -142,7 +142,7 @@ class Login(View):
             request, username=username, password=password)
         if user is not None:
             login(request, user)
-            
+
             if valuenext:
                 return redirect(request.POST.get('next'))
             else:
@@ -155,7 +155,7 @@ def logoutView(request):
     logout(request)
     return HttpResponseRedirect(reverse('plataform:index'))
 
-class CadastroUsuario(View): 
+class CadastroUsuario(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'login/cadastro.html')
 
@@ -175,8 +175,8 @@ class CadastroUsuario(View):
                 username=username, password=password, email=email)
             Usuario.objects.create(user=user)
             return HttpResponseRedirect(reverse('plataform:login'))
-        
-        
+
+
 
 
 

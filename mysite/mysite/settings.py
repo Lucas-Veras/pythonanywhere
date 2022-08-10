@@ -31,8 +31,8 @@ ALLOWED_HOSTS = ['lucasoliveira.pythonanywhere.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'plataform',
-    'enquetes.apps.EnquetesConfig',
+    'plataform.apps.PlataformConfig',
+   # 'enquetes.apps.EnquetesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
